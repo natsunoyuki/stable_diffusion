@@ -1,7 +1,12 @@
 # Stable Diffusion
 
 ## File List
-* <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion%20(EADS%20Scheduler).ipynb">Waifu%20Diffusion%20(EADS%20Scheduler).ipynb</a>
+
+### First Explorations into Diffusers and Stable Diffusion.
+<a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Stable%20Diffusion.ipynb">StableDiffusion.ipynb</a>
+
+### Waifu Diffusion with EADS Scheduler
+<a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion%20(EADS%20Scheduler).ipynb">WaifuDiffusion(EADSScheduler).ipynb</a>
 
 ## Packages and Libraries References
 ### Stable Diffusion (HuggingFace)
