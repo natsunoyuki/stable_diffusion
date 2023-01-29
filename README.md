@@ -1,5 +1,9 @@
 # Stable Diffusion
 
+## File List
+* <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion%20(EADS%20Scheduler).ipynb">Waifu%20Diffusion%20(EADS%20Scheduler).ipynb</a>
+
+## Packages and Libraries References
 ### Stable Diffusion (HuggingFace)
 https://huggingface.co/stabilityai/stable-diffusion-2-1
 
