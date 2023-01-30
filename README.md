@@ -2,7 +2,7 @@
 
 ## File List
 
-#### First Explorations into Diffusers and Stable Diffusion.
+#### Basic Forays into Diffusers and Stable Diffusion.
 * <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Stable%20Diffusion.ipynb">StableDiffusion.ipynb</a>
 * <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion.ipynb">Waifu Diffusion.ipynb</a>
 
