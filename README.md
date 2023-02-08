@@ -13,7 +13,7 @@
 * <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion%20AbyssOrangeMixs.ipynb">Waifu Diffusion AbyssOrangeMixs.ipynb</a>
 * <a href="https://github.com/natsunoyuki/stable_diffusion/blob/main/Waifu%20Diffusion%20AbyssOrangeMixs%20(MPS).ipynb">Waifu Diffusion AbyssOrangeMixs (MPS).ipynb</a>
 
-## Packages and Libraries References
+## Packages and Libraries
 ### Stable Diffusion (HuggingFace)
 https://huggingface.co/stabilityai/stable-diffusion-2-1
 
