@@ -6,8 +6,12 @@ import matplotlib.pyplot as plt
 
 
 # Load (text to image) diffuser pipeline.
-def load_pipeline(model_dir, scheduler = None, device_name = torch.device("cpu")):
-    pipe = diffusers.StableDiffusionPipeline.from_pretrained(model_dir, torch_dtype = torch.float32)
+def load_pipeline(model_dir, 
+                  scheduler = None, 
+                  device_name = torch.device("cpu"), 
+                  torch_dtype = torch.float16):
+    pipe = diffusers.StableDiffusionPipeline.from_pretrained(model_dir, 
+                                            torch_dtype = torch_dtype)
 
     if scheduler is None or scheduler in ["EulerAncestralDiscreteScheduler", "EADS"]:
         pipe.scheduler = diffusers.EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
@@ -17,16 +21,36 @@ def load_pipeline(model_dir, scheduler = None, device_name = torch.device("cpu")
         pipe.scheduler = diffusers.DPMSolverMultistepScheduler.from_config(pipe.scheduler.config)
 
     pipe.safety_checker = lambda images, **kwargs: [images, [False] * len(images)]
+    
     pipe = pipe.to(device_name)
+    
+    # https://huggingface.co/docs/diffusers/optimization/mps
+    # Enable attention slicing if computer has < 64 GB of RAM
+    if device_name == torch.device("mps"):
+        print("Enabling attention slicing on MPS.")
+        pipe.enable_attention_slicing()
+        
     return pipe
 
 
 # Load image to image diffuser pipeline.
-def load_img2img_pipeline(model_dir, device_name):
-    pipe = diffusers.StableDiffusionImg2ImgPipeline.from_pretrained(model_dir, torch_dtype = torch.float16)
+def load_img2img_pipeline(model_dir, 
+                          device_name = torch.device("cpu"), 
+                          torch_dtype = torch.float16):
+    pipe = diffusers.StableDiffusionImg2ImgPipeline.from_pretrained(model_dir, 
+                                                   torch_dtype = torch_dtype)
     pipe.scheduler = diffusers.EulerAncestralDiscreteScheduler.from_config(pipe.scheduler.config)
+
     pipe.safety_checker = lambda images, **kwargs: [images, [False] * len(images)]
+
     pipe = pipe.to(device_name)
+
+    # https://huggingface.co/docs/diffusers/optimization/mps
+    # Enable attention slicing if computer has < 64 GB of RAM
+    if device_name == torch.device("mps"):
+        print("Enabling attention slicing on MPS.")
+        pipe.enable_attention_slicing()
+
     return pipe
 
 
@@ -45,6 +69,7 @@ def run_pipe(pipe, prompt, negative_prompt = None, steps = 60,
         gen = torch.Generator().manual_seed(seed)
     else:
         gen = torch.Generator(device = device_name).manual_seed(seed)
+        
     image_list = []
 
     with torch.autocast("cuda"): 
